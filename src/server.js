@@ -2,10 +2,10 @@ const amqlib = require("amqplib");
 const mongo = require("./dao/mongo");
 const { ObjectId } = require("mongodb");
 
+const RABBITMQ_CONNECTION_URL = process.env.RABBITMQ_CONNECTION_URL;
+
 const main = async () => {
-  const connection = await amqlib.connect(
-    "amqps://ybbpakop:rs0knoxchoJz6XGkqCMumuJpSlb9oBZp@puffin.rmq2.cloudamqp.com/ybbpakop"
-  );
+  const connection = await amqlib.connect(RABBITMQ_CONNECTION_URL);
   const channel = await connection.createChannel();
   const db = await mongo();
 
